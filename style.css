@@ -1,0 +1,38 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+main {
+  padding: 5rem;
+}
+
+input {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1px solid black;
+  text-align: center;
+  width: 3rem;
+}
+
+input:focus {
+  outline: none;
+}
+
+.feladatok {
+  margin-bottom: 0.5rem;
+}
+
+.btn_cont {
+  margin-top: 1rem;
+}
+
+.helyes {
+  border: 1px #5cb338 solid;
+}
+
+.rossz {
+  border: 1px red solid;
+}
