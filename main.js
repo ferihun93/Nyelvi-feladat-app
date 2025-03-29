@@ -40,6 +40,7 @@ function resetInputs(inputElem) {
   inputElem.classList.remove("helyes", "rossz"); // Az osztályok eltávolítása
 }
 function felMegoldasok(inputElem, key) {
+  inputElem.classList.remove("helyes", "rossz");
   inputElem.value = megoldasok[key];
 }
 
