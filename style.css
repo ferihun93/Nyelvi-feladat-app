@@ -4,21 +4,40 @@
   box-sizing: border-box;
 }
 
+h2 {
+  margin-bottom: 5rem;
+}
+
 main {
   padding: 5rem;
 }
 
 input {
-  border-top: none;
-  border-left: none;
-  border-right: none;
-  border-bottom: 1px solid black;
+  width: 100px; /* Vagy a kívánt fix szélesség */
+  height: 30px; /* Fix magasság */
+  border: 2px solid #ccc; /* Alapértelmezett keret */
+  box-sizing: border-box; /* Megakadályozza a méretváltozást */
+  transition: border-color 0.3s ease, background-color 0.3s ease; /* Szép animáció */
   text-align: center;
-  width: 3rem;
+}
+
+input.helyes {
+  border-color: green;
+  background-color: #d4ffd4;
+  text-align: left;
+}
+
+input.rossz {
+  border-color: red;
+  background-color: #ffd4d4;
 }
 
 input:focus {
   outline: none;
+}
+
+button {
+  padding: 0.1rem;
 }
 
 .feladatok {
@@ -27,12 +46,4 @@ input:focus {
 
 .btn_cont {
   margin-top: 1rem;
-}
-
-.helyes {
-  border: 1px #5cb338 solid;
-}
-
-.rossz {
-  border: 1px red solid;
 }

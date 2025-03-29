@@ -7,38 +7,46 @@ const megoldasok = {
   fel1_6: "t",
 };
 
-// 📌 Általános függvény, amely végigmegy az összes inputon és végrehajt egy adott műveletet
+// Callback függvény az ellenőrzéshez
+function ellenorzo(inputElem, key) {
+  const ertek = inputElem.value.trim(); // Az input értéke, levágott szóközökkel
+  inputElem.classList.remove("helyes", "rossz"); // Előző osztályok eltávolítása
+
+  // Ha az input üres, akkor is rossz válasznak számít
+  if (ertek === "") {
+    inputElem.classList.add("rossz");
+  } else if (ertek === megoldasok[key]) {
+    inputElem.classList.add("helyes"); // Helyes válasz esetén
+  } else {
+    inputElem.classList.add("rossz"); // Rossz válasz esetén
+  }
+}
+
 function processInputs(callback) {
   Object.keys(megoldasok).forEach((key) => {
-    let inputElem = document.querySelector(`.${key}`);
-    if (inputElem) callback(inputElem, key);
+    const inputElem = document.querySelector(`.${key}`);
+    if (inputElem) callback(inputElem, key); // Meghívja a callbacket az input mezőn
   });
 }
 
-// 📌 Ellenőrzés: helyes/rossz osztályok hozzáadása
-function Ellenorzo() {
-  processInputs((inputElem, key) => {
-    let ertek = inputElem.value;
-    inputElem.classList.remove("helyes", "rossz"); // Előző osztályok törlése
+// Ellenőrzés gomb
+document.querySelector(".javito_btn").addEventListener("click", () => {
+  processInputs(ellenorzo);
+});
 
-    if (ertek) {
-      if (ertek === megoldasok[key]) {
-        inputElem.classList.add("helyes");
-      } else if (ertek === undefined || ertek !== megoldasok) {
-        inputElem.classList.add("rossz");
-      }
-    }
-  });
+// Reset gomb
+function resetInputs(inputElem) {
+  inputElem.value = ""; // Az input értékének törlése
+  inputElem.classList.remove("helyes", "rossz"); // Az osztályok eltávolítása
+}
+function felMegoldasok(inputElem, key) {
+  inputElem.value = megoldasok[key];
 }
 
-// 📌 Reset: mezők törlése és osztályok eltávolítása
-function Reset() {
-  processInputs((inputElem) => {
-    inputElem.value = "";
-    inputElem.classList.remove("helyes", "rossz");
-  });
-}
+document.querySelector(".reset_btn").addEventListener("click", () => {
+  processInputs(resetInputs);
+});
 
-// 📌 Gombok eseménykezelői
-document.querySelector(".javito_btn").addEventListener("click", Ellenorzo);
-document.querySelector(".reset_btn").addEventListener("click", Reset);
+document.querySelector(".megoldas_btn").addEventListener("click", () => {
+  processInputs(felMegoldasok);
+});
